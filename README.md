@@ -3,6 +3,12 @@
 [![GitHub Pages](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://haiyewei.github.io/GoofishCredentialsBot)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
+> ## ⚠️ 警告
+> **各个功能正在测试中，请勿上线正式环境！除非你能自己修复问题。**
+
+> ## 📜 免责声明
+> **本项目仅供学习交流使用，禁止用于任何商业或非法用途。使用本项目所产生的一切后果由使用者自行承担，与项目作者无关。**
+
 闲鱼卡密机器人 - 自动回复、自动发货、订单管理、多账号支持
 
 ## ✨ 功能特性
