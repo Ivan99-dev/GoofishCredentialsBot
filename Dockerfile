@@ -83,6 +83,9 @@ RUN mkdir -p data logs && \
 # 切换到非 root 用户
 USER nodejs
 
+# 确保日志目录可写（即使挂载了卷）
+RUN mkdir -p logs
+
 # 暴露端口
 EXPOSE 3000
 

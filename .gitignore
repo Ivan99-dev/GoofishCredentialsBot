@@ -40,3 +40,7 @@ npm-debug.log*
 
 # Reference projects
 .ReferenceProjects/
+
+.omc
+.history
+.claude/

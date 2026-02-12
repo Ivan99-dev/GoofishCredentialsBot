@@ -48,17 +48,28 @@ function getTimestampStr(): string {
 
 // 初始化日志文件（每次启动创建新文件）
 function initLogFile(): string {
-    const dateStr = getDateStr()
-    const dayDir = path.join(logsDir, dateStr)
+    try {
+        const dateStr = getDateStr()
+        const dayDir = path.join(logsDir, dateStr)
 
-    // 确保日期目录存在
-    if (!fs.existsSync(dayDir)) {
-        fs.mkdirSync(dayDir, { recursive: true })
+        // 确保日期目录存在
+        if (!fs.existsSync(dayDir)) {
+            fs.mkdirSync(dayDir, { recursive: true })
+        }
+
+        // 以启动时间戳命名日志文件
+        const timestamp = getTimestampStr()
+        const logFile = path.join(dayDir, `${timestamp}.log`)
+
+        // 测试写入权限
+        fs.writeFileSync(logFile, `Log started at ${new Date().toISOString()}\n`, 'utf-8')
+
+        return logFile
+    } catch (error) {
+        console.warn(`⚠️  无法创建日志文件: ${error instanceof Error ? error.message : String(error)}`)
+        console.warn('⚠️  将仅输出到控制台')
+        return '' // 返回空字符串表示无法写入文件
     }
-
-    // 以启动时间戳命名日志文件
-    const timestamp = getTimestampStr()
-    return path.join(dayDir, `${timestamp}.log`)
 }
 
 // 日志队列，确保顺序
@@ -66,12 +77,15 @@ const logQueue: string[] = []
 let isWriting = false
 
 function flushLogs() {
-    if (isWriting || logQueue.length === 0) return
+    if (isWriting || logQueue.length === 0 || !currentLogFile) return
     isWriting = true
 
     const content = logQueue.splice(0, logQueue.length).join('\n') + '\n'
 
-    fs.appendFile(currentLogFile, content, 'utf-8', () => {
+    fs.appendFile(currentLogFile, content, 'utf-8', (err) => {
+        if (err) {
+            console.error(`⚠️  日志写入失败: ${err.message}`)
+        }
         isWriting = false
         if (logQueue.length > 0) flushLogs()
     })
