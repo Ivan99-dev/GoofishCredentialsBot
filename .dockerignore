@@ -1,0 +1,51 @@
+# Node modules
+node_modules/
+frontend/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/
+public/
+frontend/dist/
+frontend/.angular/
+
+# Development files
+.git/
+.gitignore
+.vscode/
+.claude/
+.omc/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Database files (不打包到镜像中)
+data/*.db
+data/*.db-shm
+data/*.db-wal
+
+# Logs
+logs/
+*.log
+
+# Documentation
+docs/
+README.md
+LICENSE
+
+# PM2
+.pm2/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test files
+*.test.ts
+*.spec.ts
+__tests__/
+coverage/

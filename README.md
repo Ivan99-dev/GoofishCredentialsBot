@@ -2,6 +2,7 @@
 
 [![GitHub Pages](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://haiyewei.github.io/GoofishCredentialsBot)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Docker](https://img.shields.io/badge/docker-ready-blue)](https://github.com/Ivan99-dev/GoofishCredentialsBot/pkgs/container/goofishcredentialsbot)
 
 > ## ⚠️ 警告
 > **各个功能正在测试中，请勿上线正式环境！除非你能自己修复问题。**
@@ -28,20 +29,43 @@
 | 后端 | Node.js + TypeScript + Hono + SQLite |
 | 前端 | Angular 21 + Tailwind CSS + DaisyUI |
 | 工作流 | simple-mind-map |
-| 部署 | PM2 |
+| 部署 | Docker / PM2 |
 
 ## 🚀 快速开始
 
-### 环境要求
+### 方式 1: Docker 部署（推荐）
+
+```bash
+# 克隆项目
+git clone git@github.com:Ivan99-dev/GoofishCredentialsBot.git
+cd GoofishCredentialsBot
+
+# 配置环境变量
+cp .env.example .env
+
+# 启动服务
+docker-compose up -d
+
+# 查看日志
+docker-compose logs -f
+```
+
+访问 `http://localhost:3000` 进入管理界面。
+
+📖 详细的 Docker 部署文档请查看 [README.Docker.md](README.Docker.md)
+
+### 方式 2: 本地开发
+
+#### 环境要求
 
 - Node.js >= 18
 - npm >= 9
 
-### 安装
+#### 安装
 
 ```bash
 # 克隆项目
-git clone https://github.com/haiyewei/GoofishCredentialsBot.git
+git clone git@github.com:Ivan99-dev/GoofishCredentialsBot.git
 cd GoofishCredentialsBot
 
 # 安装依赖
@@ -49,7 +73,7 @@ npm install
 cd frontend && npm install && cd ..
 ```
 
-### 运行
+#### 运行
 
 ```bash
 # 开发模式
