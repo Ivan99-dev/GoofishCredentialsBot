@@ -13,8 +13,8 @@ WORKDIR /app/frontend
 # 复制前端依赖文件
 COPY frontend/package*.json ./
 
-# 安装前端依赖
-RUN npm ci --prefer-offline --no-audit
+# 安装前端依赖（使用 npm install 而不是 ci，因为可能没有 package-lock.json）
+RUN npm install --prefer-offline --no-audit
 
 # 复制前端源码
 COPY frontend/ ./
@@ -32,7 +32,7 @@ COPY package*.json ./
 COPY tsconfig.json ./
 
 # 安装后端依赖（包括 devDependencies 用于构建）
-RUN npm ci --prefer-offline --no-audit
+RUN npm install --prefer-offline --no-audit
 
 # 复制后端源码
 COPY src/ ./src/
@@ -64,7 +64,7 @@ RUN addgroup -g 1001 -S nodejs && \
 COPY package*.json ./
 
 # 只安装生产依赖
-RUN npm ci --only=production --prefer-offline --no-audit && \
+RUN npm install --only=production --prefer-offline --no-audit && \
     npm cache clean --force
 
 # 从构建阶段复制编译后的后端代码
